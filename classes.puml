@@ -1,0 +1,53 @@
+@startuml md-to-docx
+!pragma layout smetana
+left to right direction
+skinparam groupInheritance 2
+
+Class Text {
+    + String type
+    + String text
+}
+
+Class Hyprlink {
+    +String reference_number
+    +int reference
+}
+
+Class PlainLine {
+    +List<Text> content
+}
+
+Class OrderedListMember {
+    +int number
+    +int nesting_level
+}
+
+Class UnodrededListMember {
+    +int nesting_level
+}
+
+Class CodeBlockMember {
+    +String language
+    +int line_number
+}
+
+Class Header {
+    +int level
+}
+
+Class Image {
+    +String source
+    +String caption
+}
+
+Text <|-- Hyprlink
+
+PlainLine *-- Text
+
+PlainLine <|-- UnodrededListMember
+PlainLine <|-- OrderedListMember
+PlainLine <|-- CodeBlockMember
+PlainLine <|-- Header
+PlainLine <|-- Image
+
+@enduml
